@@ -1,0 +1,103 @@
+<html ng-app="ng-app">
+    <head>
+        <title>Service Providers</title>
+        <script src="angular.min.js"></script>
+        <script src="service.js"></script>
+        <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+ integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+        <style>
+            .heading{
+                text-align: center;
+                color:brown;
+                font-weight: bold;
+                font-size: 30px;
+            }
+            .alert-primary{
+                padding-top: 5px;
+                padding-bottom: 10px;
+                height:max-content;
+            }
+            .division{
+               
+                border:1px solid black;
+            }
+            .inner-division{
+                border: 1px solid black;
+            }
+         
+            
+        </style>
+      
+    </head>
+   
+    <body>
+        <div class="heading alert-primary">Shopping List using Service Providers in Angular js</div>
+        <br>
+        <div class="row">
+            <div class="division col-lg-6 col-sm-6" ng-controller="availableitems as available">
+                <h2 style="text-align: center;">List of items available</h2>
+                <hr style="border: 1px solid black;">
+                <br>
+                <ol style="font-size: 20px;margin-top: 40px;" >
+                    <li  ng-repeat="item in available.listofitems"style="margin-top:5px;margin-bottom: 5px;">
+
+                        <div class="card"  style="width:50%">
+                            <img src="{{$index}}.jpg" class="card-img-top" alt="...">
+                           
+                              <h5 class="card-title" style="text-align: center;font-size:25px;"> {{item.name}} </h5>
+                              <p class="card-text">
+                                <span style="padding-left: 23px;">Stock Left : {{item.quantity}}</span>
+                                <span style="color: red;padding-left: 10px;padding-right: 10px;font-weight: bold;">{{item.m}}</span>
+                                <div>
+                                <span style="padding-left: 10px;">Cost - Rs.{{item.price}}</span>
+                             
+                                <span style="padding-left:15px;">  <button class="btn btn-warning" ng-click="available.buynow($index)">Add to cart</button></span>
+                                  
+                            </p>
+                         </div>
+                        </div>
+                    </li>
+                </ol>
+
+            </div>
+            <div class="division col-lg-6 col-sm-6 " ng-controller="boughtitems as done">
+                <h2 style="text-align: center;">List of items in the cart </h2>
+                <hr style="border:1px solid black;">
+                <div style="font-weight: bolder;font-size: 20px;color:darkblue">Total Amount : {{done.totalamount()}}</div>
+                <br>
+                <ol style="font-size: 20px;margin-top: 35px;">
+                    <li ng-repeat="item in done.itemslist" style="margin-top:5px;margin-bottom: 5px;">
+                        
+                        <div class="card"  style="width: 18rem;">
+                            <img src="{{item.index}}.jpg" class="card-img-top" alt="...">
+                           
+                              <h5 class="card-title" style="text-align: center;font-size:25px;"> {{item.name}} </h5>
+                              <p class="card-text">
+                                <span style="padding-left: 23px;">{{item.name}}</span>
+                                     <span>Quantity : {{item.quantity}}</span>
+                                     <div>
+                                    <span>Cost - Rs.{{item.price}}</span>
+                                    <span style="padding-left:15px;">  <button class="btn btn-warning" ng-click="done.removecart($index)">Remove From cart</button></span>
+                                </div>
+    
+                            </p>
+                         </div>
+                        </div>
+                    </li>
+                    
+                </ol>
+                
+
+            </div>
+
+        </div>
+        
+        
+    </body>
+</html>
+
+
+
+
